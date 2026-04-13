@@ -12,10 +12,10 @@ import paho.mqtt.client as mqtt
 
 app = FastAPI(title="MES MQTT Bridge")
 
-MQTT_HOST = os.getenv("MQTT_HOST", "vb8eaabb.us-east-1.emqx.cloud")
+MQTT_HOST = os.getenv("MQTT_HOST", "")
 MQTT_PORT = int(os.getenv("MQTT_PORT", "15624"))
-MQTT_USERNAME = os.getenv("MQTT_USERNAME", "gpt")
-MQTT_PASSWORD = os.getenv("MQTT_PASSWORD", "gateway7")
+MQTT_USERNAME = os.getenv("MQTT_USERNAME", "")
+MQTT_PASSWORD = os.getenv("MQTT_PASSWORD", "")
 MQTT_TOPIC = os.getenv("MQTT_TOPIC", "transport/yo/mes/#")
 MQTT_CLIENT_ID = os.getenv("MQTT_CLIENT_ID", "mes-fastapi-bridge")
 MQTT_USE_TLS = os.getenv("MQTT_USE_TLS", "false").lower() == "true"
