@@ -8,9 +8,8 @@ import time
 from typing import Any
 
 from fastapi import FastAPI, HTTPException
-import paho.mqtt.client as mqtt
-
 from fastapi.responses import HTMLResponse
+import paho.mqtt.client as mqtt
 
 app = FastAPI(title="MES MQTT Bridge")
 
@@ -151,6 +150,7 @@ def root() -> dict[str, Any]:
             "/api/mes/yo/lld3",
             "/api/mes/yo/lld4",
             "/api/mes/yo/lld5",
+            "/privacy",
         ],
     }
 
@@ -197,3 +197,24 @@ def api_mes_yo_node(node: str) -> dict[str, Any]:
         "site": "yo",
         **topic_record(topic, latest_by_topic[topic]),
     }
+
+
+@app.get("/privacy", response_class=HTMLResponse)
+def privacy() -> str:
+    return """
+    <html>
+      <head>
+        <title>Privacy Policy</title>
+      </head>
+      <body>
+        <h1>Privacy Policy</h1>
+        <p>This service provides read-only access to MES status data from a privately operated MQTT-to-API bridge.</p>
+        <p>When a user asks for live MES status, the GPT may send a request to this service to retrieve current MES node messages.</p>
+        <p>This service may process request metadata and query parameters needed to return MES status.</p>
+        <p>No write operations are performed against MQTT, MES, or control systems.</p>
+        <p>Data is used only to return MES status responses through the GPT action.</p>
+        <p>Operator: Douglas Poole</p>
+        <p>Contact: your-email@example.com</p>
+      </body>
+    </html>
+    """
