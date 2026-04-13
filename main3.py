@@ -10,6 +10,8 @@ from typing import Any
 from fastapi import FastAPI, HTTPException
 import paho.mqtt.client as mqtt
 
+from fastapi.responses import HTMLResponse
+
 app = FastAPI(title="MES MQTT Bridge")
 
 MQTT_HOST = os.getenv("MQTT_HOST", "")
