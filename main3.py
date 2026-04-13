@@ -13,13 +13,13 @@ import paho.mqtt.client as mqtt
 
 app = FastAPI(title="MES MQTT Bridge")
 
-MQTT_HOST = os.getenv("MQTT_HOST", "")
-MQTT_PORT = int(os.getenv("MQTT_PORT", "15624"))
-MQTT_USERNAME = os.getenv("MQTT_USERNAME", "")
-MQTT_PASSWORD = os.getenv("MQTT_PASSWORD", "")
-MQTT_TOPIC = os.getenv("MQTT_TOPIC", "transport/yo/mes/#")
-MQTT_CLIENT_ID = os.getenv("MQTT_CLIENT_ID", "mes-fastapi-bridge")
-MQTT_USE_TLS = os.getenv("MQTT_USE_TLS", "false").lower() == "true"
+MQTT_HOST = os.getenv("MQTT_HOST", "").strip()
+MQTT_PORT = int(os.getenv("MQTT_PORT", "1883").strip())
+MQTT_USERNAME = os.getenv("MQTT_USERNAME", "").strip()
+MQTT_PASSWORD = os.getenv("MQTT_PASSWORD", "").strip()
+MQTT_TOPIC = os.getenv("MQTT_TOPIC", "transport/yo/mes/#").strip()
+MQTT_CLIENT_ID = os.getenv("MQTT_CLIENT_ID", "mes-fastapi-bridge").strip()
+MQTT_USE_TLS = os.getenv("MQTT_USE_TLS", "false").strip().lower() == "true"
 
 latest_by_topic: dict[str, dict[str, Any]] = {}
 mqtt_connected = False
